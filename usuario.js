@@ -2,25 +2,17 @@ const nodoPrincipal = document.getElementById("container");
 
 const formFields = [
     {
-        id: "productName",
-        label: "Nombre del producto",
+        id: "name",
+        label: "Nombre",
     },
     {
-        id: "imageUrl",
-        label: "Imagen url del producto",
+        id: "email",
+        label: "Email",
     },
     {
-        id: "category",
-        label: "categoria",
+        id: "password",
+        label: "Password",
     },
-    {
-        id: "tallesProductos",
-        label: "Talle",
-    },
-    {
-        id: "price",
-        label: "Precio",
-    }
 ]
 
 class Input{
@@ -44,6 +36,7 @@ class Input{
     agregaEventos(){
 
     }
+
 }
 
 let contenidoDelForm = '';
@@ -54,47 +47,46 @@ for(let n=0; n < formFields.length; n++) {
 }
 
 nodoPrincipal.innerHTML = `
-    <h1>Administrador</h1>
+    <h1>Registro</h1>
     <form id="formulario">
         ${contenidoDelForm} 
         <button type=" submit" id="save">Guardar</button> 
     </form>
     `
+
+
     let boton = document.getElementById("save");
     boton.addEventListener("click", function() {
         console.log("clickeando...")
     })
 
-    const inputName = document.getElementById("productName")
-    inputName.addEventListener("change", (evt) => {
+    const inputName = document.getElementById("name")
+    inputName.addEventListener("input", (evt) => {
         console.log(evt.target.value)
     })
 
-    const inputImage = document.getElementById("imageUrl")
-    inputImage.addEventListener("change", (evt) => {
+    const inputEmail = document.getElementById("email")
+    inputEmail.addEventListener("input", (evt) => {
         console.log(evt.target.value)
     })
-    const inputCategory = document.getElementById("category")
-    inputCategory.addEventListener("change", (evt) => {
-        console.log(evt.target.value)
-    })
-
-    const inputTalle = document.getElementById("tallesProductos")
-    inputTalle.addEventListener("change", (evt) => {
+    const inputPassword = document.getElementById("password")
+    inputPassword.addEventListener("input", (evt) => {
         console.log(evt.target.value)
     })
 
-    const inputPrecio = document.getElementById("price")
-    inputPrecio.addEventListener("input", (evt) => {
-        console.log(evt.target.value)
-    })
+
 
 document.getElementById("formulario").addEventListener("submit", (evt) => {
-    evt.preventDefault()
+    //evt.preventDefault()
     console.log("Validando el formulario")
     document.getElementById("formulario").submit()
+
+
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+    let usuario = JSON.parse(localStorage.getItem("usuario")) || [];
 })
 
 
 
 
+   

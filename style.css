@@ -3,6 +3,18 @@ body{
     padding: 5px;
 }
 
+.divButton{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: end;
+    align-items: flex-end;
+}
+.divButton.btn1{
+    justify-content: end;
+    align-items: flex-end;
+
+}
 .tituloHeader{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-align: center;
