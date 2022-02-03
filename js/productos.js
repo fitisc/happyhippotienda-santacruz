@@ -1,16 +1,3 @@
-$("#titulo1").prepend(`<div>
- <h1>HAPPYHIPPO <br> Tienda de ropa de 0 a 8 años</h1>
- </div>`);
-
- //$("div").appendChild(`<div><button class="btn-hide"</button> <button class="btn-show"></button></div>`)
- 
-//$("button").click(function(){
-  //$(".btn-hide").sliceUp(3000, "slow");
-  //$(".btn-show").sliceDown(3000, "slow");
-//});
- 
-
-
 const productos = [
     {
       id: 1,
@@ -157,21 +144,21 @@ const inyectarHTMLcarrito = () => {
 };
 
 
-const restarProducto = (event) => {
-    let idProducto = Number(event.target.getAttribute("data-id"));
-  
-    carrito = carrito.map((element) => {
-      if (element.id === idProducto) {
-        element.cantidad--;
-        element.precioTotal = element.precioTotal - element.precio;
-        return element;
-      } else {
-        return element;
-      }
-    });
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    inyectarHTMLcarrito();
-  };
+function restarProducto(event) {
+  let idProducto = Number(event.target.getAttribute("data-id"));
+
+  carrito = carrito.map((element) => {
+    if (element.id === idProducto) {
+      element.cantidad--;
+      element.precioTotal = element.precioTotal - element.precio;
+      return element;
+    } else {
+      return element;
+    }
+  });
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  inyectarHTMLcarrito();
+}
   
   const borrarProducto = (event) => {
     let idProducto = Number(event.target.getAttribute("data-id"));
@@ -198,9 +185,6 @@ const restarProducto = (event) => {
   };
   
 
-  
-
-
-
 introducirCards();
 inyectarHTMLcarrito();
+
