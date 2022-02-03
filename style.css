@@ -19,6 +19,7 @@ body{
 }
 .tituloHeader{
     background-color: rgb(212, 243, 212);
+    display: none;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-align: center;
     border-radius: 5vh;
@@ -51,13 +52,17 @@ body{
     position: fixed;
     height: 100vh;
     overflow-x: hidden;
-    transition: 0.5s;
-    left: 0px;
+    transition: left 2s;
+    left: -200px;
     top: 0;
     z-index: 2;
     width: 20vw;
     padding: 5px;
     margin: 5px;
+  }
+  .carritoSide:hover{
+      left: 0px;
+      cursor: pointer;
   }
 
   .card{

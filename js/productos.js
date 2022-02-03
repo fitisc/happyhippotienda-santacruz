@@ -73,19 +73,19 @@ let sidebar = document.querySelector(".carritoSide");
 
 
 const introducirCards = () => {
-productos.forEach((element)=>{
+productos.forEach((element) => {
     div1.innerHTML += `<div class="card">
     <img src="${element.img}" style="width:100%">
     <h3>${element.nombre}</h3>
     <h4>PRECIO : $<span>${element.precio}</span></h4>
-    <button class="btn-talle" 
     <button class="btn-buy" data-id="${element.id}">AGREGAR</button>
     </div>
     `;
 });
+
 let btnBuy = document.querySelectorAll(".btn-buy");
 
-btnBuy.forEach((element)=>{
+btnBuy.forEach((element) => {
     element.addEventListener("click", (event) => {
         enviarAlCarrito(event.target.parentElement);    
     });
@@ -130,12 +130,12 @@ const inyectarHTMLcarrito = () => {
         sidebar.innerHTML += ` 
         <div>
         <h3>${element.nombre}</h3>
+        <p>$${element.precioTotal}</p>
         <h4>LLEVO: ${element.cantidad}</h4>
         <img src="${element.imagen}" style="width:50%">
         <button class="btn-menos" data-id=${element.id}> - </button>
-        <button class="btn-borrar" data-id=${element.id}>BORRAR</button>
-        </div>
-        `
+        <button class="btn-borrar" data-id=${element.id}>BORRAR </button>
+        </div>`;
     });
     let divTotal = document.createElement("div");
     let miTotal = totalDelCarrito();
@@ -144,21 +144,21 @@ const inyectarHTMLcarrito = () => {
 };
 
 
-function restarProducto(event) {
-  let idProducto = Number(event.target.getAttribute("data-id"));
-
-  carrito = carrito.map((element) => {
-    if (element.id === idProducto) {
-      element.cantidad--;
-      element.precioTotal = element.precioTotal - element.precio;
-      return element;
-    } else {
-      return element;
-    }
-  });
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  inyectarHTMLcarrito();
-}
+const restarProducto = (event) => {
+    let idProducto = Number(event.target.getAttribute("data-id"));
+  
+    carrito = carrito.map((element) => {
+      if (element.id === idProducto) {
+        element.cantidad--;
+        element.precioTotal = element.precioTotal - element.precio;
+        return element;
+      } else {
+        return element;
+      }
+    });
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    inyectarHTMLcarrito();
+  };
   
   const borrarProducto = (event) => {
     let idProducto = Number(event.target.getAttribute("data-id"));
