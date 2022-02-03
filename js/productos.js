@@ -1,3 +1,16 @@
+$("#titulo1").prepend(`<div>
+ <h1>HAPPYHIPPO <br> Tienda de ropa de 0 a 8 años</h1>
+ </div>`);
+
+ //$("div").appendChild(`<div><button class="btn-hide"</button> <button class="btn-show"></button></div>`)
+ 
+//$("button").click(function(){
+  //$(".btn-hide").sliceUp(3000, "slow");
+  //$(".btn-show").sliceDown(3000, "slow");
+//});
+ 
+
+
 const productos = [
     {
       id: 1,
@@ -9,7 +22,7 @@ const productos = [
     },
     {
       id: 2,
-      nombre: "remera bebe",
+      nombre: "Remera bebe",
       precio: 1500,
       img: "./img/remeramundo.png",
       cantidad: 1,
@@ -17,7 +30,7 @@ const productos = [
     },
     {
       id: 3,
-      nombre: "vestido nena",
+      nombre: "Vestido nena",
       precio: 1750,
       img: "./img/vestidoplay.png",
       cantidad: 1,
@@ -25,7 +38,7 @@ const productos = [
     },
     {
       id: 4,
-      nombre: "short unisex",
+      nombre: "Short unisex",
       precio: 1000,
       img: "./img/shortgris.png",
       cantidad: 1,
@@ -33,7 +46,7 @@ const productos = [
     },
     {
         id: 5,
-        nombre: "joggins varon",
+        nombre: "Joggins varon",
         precio: 1700,
         img: "./img/jogginsport.png",
         cantidad: 1,
@@ -41,7 +54,7 @@ const productos = [
       },
       {
         id: 6,
-        nombre: "buzo canguro",
+        nombre: "Buzo canguro",
         precio: 3000,
         img: "./img/buzocanguro.png",
         cantidad: 1,
@@ -49,17 +62,28 @@ const productos = [
       },
       {
         id: 7,
-        nombre: "campera rompeviento",
+        nombre: "Campera con cierre",
+        precio: 3100,
+        img: "./img/canguroazul.png",
+        cantidad: 1,
+        
+      },
+      {
+        id: 8,
+        nombre: "Campera rompeviento",
         precio: 3500,
         img: "./img/camperaverde.png",
         cantidad: 1,
         
       },
+     
   ];
 
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let div1 = document.querySelector("#prendasDiv");
 let sidebar = document.querySelector(".carritoSide");
+
+
 
 const introducirCards = () => {
 productos.forEach((element)=>{
@@ -67,6 +91,7 @@ productos.forEach((element)=>{
     <img src="${element.img}" style="width:100%">
     <h3>${element.nombre}</h3>
     <h4>PRECIO : $<span>${element.precio}</span></h4>
+    <button class="btn-talle" 
     <button class="btn-buy" data-id="${element.id}">AGREGAR</button>
     </div>
     `;
@@ -174,5 +199,8 @@ const restarProducto = (event) => {
   
 
   
+
+
+
 introducirCards();
 inyectarHTMLcarrito();
