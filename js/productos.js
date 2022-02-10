@@ -1,70 +1,16 @@
-const productos = [
-    {
-      id: 1,
-      nombre: "Remera niño",
-      precio: 1500,
-      img: "./img/remeratimon.png",
-      cantidad: 1,
-      
-    },
-    {
-      id: 2,
-      nombre: "Remera bebe",
-      precio: 1500,
-      img: "./img/remeramundo.png",
-      cantidad: 1,
-      
-    },
-    {
-      id: 3,
-      nombre: "Vestido nena",
-      precio: 1750,
-      img: "./img/vestidoplay.png",
-      cantidad: 1,
-      
-    },
-    {
-      id: 4,
-      nombre: "Short unisex",
-      precio: 1000,
-      img: "./img/shortgris.png",
-      cantidad: 1,
-      
-    },
-    {
-        id: 5,
-        nombre: "Joggins varon",
-        precio: 1700,
-        img: "./img/jogginsport.png",
-        cantidad: 1,
-        
-      },
-      {
-        id: 6,
-        nombre: "Buzo canguro",
-        precio: 3000,
-        img: "./img/buzocanguro.png",
-        cantidad: 1,
-        
-      },
-      {
-        id: 7,
-        nombre: "Campera con cierre",
-        precio: 3100,
-        img: "./img/canguroazul.png",
-        cantidad: 1,
-        
-      },
-      {
-        id: 8,
-        nombre: "Campera rompeviento",
-        precio: 3500,
-        img: "./img/camperaverde.png",
-        cantidad: 1,
-        
-      },
-     
-  ];
+$.get("data.json", (data) => {
+  //const introducirCards = () => {
+    data.forEach((element) => {
+        div1.innerHTML += `<div class="card">
+        <img src="${element.img}" style="width:100%">
+        <h3>${element.nombre}</h3>
+        <h4>PRECIO : $<span>${element.precio}</span></h4>
+        <button class="btn-buy" data-id="${element.id}">AGREGAR</button>
+        </div>`;
+    });
+  
+});
+
 
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let div1 = document.querySelector("#prendasDiv");
@@ -72,16 +18,7 @@ let sidebar = document.querySelector(".carritoSide");
 
 
 
-const introducirCards = () => {
-productos.forEach((element) => {
-    div1.innerHTML += `<div class="card">
-    <img src="${element.img}" style="width:100%">
-    <h3>${element.nombre}</h3>
-    <h4>PRECIO : $<span>${element.precio}</span></h4>
-    <button class="btn-buy" data-id="${element.id}">AGREGAR</button>
-    </div>
-    `;
-});
+
 
 let btnBuy = document.querySelectorAll(".btn-buy");
 
@@ -91,7 +28,6 @@ btnBuy.forEach((element) => {
     });
 });
 
-};
 
 const enviarAlCarrito = (datosProductos) => {
     let productoAlCarrito = {
@@ -185,6 +121,6 @@ const restarProducto = (event) => {
   };
   
 
-introducirCards();
+//introducirCards();
 inyectarHTMLcarrito();
 
