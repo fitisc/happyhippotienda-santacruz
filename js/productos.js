@@ -9,6 +9,14 @@ $.get("data.json", (data) => {
         </div>`;
     });
   
+    let btnBuy = document.querySelectorAll(".btn-buy");
+
+btnBuy.forEach((element) => {
+    element.addEventListener("click", (event) => {
+        enviarAlCarrito(event.target.parentElement);    
+    });
+});
+
 });
 
 
@@ -20,13 +28,7 @@ let sidebar = document.querySelector(".carritoSide");
 
 
 
-let btnBuy = document.querySelectorAll(".btn-buy");
 
-btnBuy.forEach((element) => {
-    element.addEventListener("click", (event) => {
-        enviarAlCarrito(event.target.parentElement);    
-    });
-});
 
 
 const enviarAlCarrito = (datosProductos) => {
