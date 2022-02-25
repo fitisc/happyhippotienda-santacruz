@@ -25,12 +25,6 @@ let div1 = document.querySelector("#prendasDiv");
 let sidebar = document.querySelector(".carritoSide");
 
 
-
-
-
-
-
-
 const enviarAlCarrito = (datosProductos) => {
     let productoAlCarrito = {
         imagen: datosProductos.querySelector("img").src, 
@@ -62,22 +56,31 @@ const enviarAlCarrito = (datosProductos) => {
 };
             
 
+
 const inyectarHTMLcarrito = () => {
     sidebar.innerHTML = "";
+    let divTitulo = document.createElement("div");
+    divTitulo.innerHTML = "<h4>CARRITO DE COMPRAS</h4>";
+    sidebar.appendChild(divTitulo);
     carrito.forEach((element) => {
         sidebar.innerHTML += ` 
         <div>
-        <h3>${element.nombre}</h3>
-        <p>$${element.precioTotal}</p>
-        <h4>LLEVO: ${element.cantidad}</h4>
-        <img src="${element.imagen}" style="width:50%">
+        <h5>${element.nombre}</h5>
+        <img src="${element.imagen}" style="width:30%">
+        <h6>Cantidad: ${element.cantidad}</h6>
         <button class="btn-menos" data-id=${element.id}> - </button>
+        <button class="btn-mas" data-id=${element.id}> + </button>
         <button class="btn-borrar" data-id=${element.id}>BORRAR </button>
+        <p>subtotal por prenda: $${element.precioTotal}</p>
         </div>`;
     });
+    
+
     let divTotal = document.createElement("div");
     let miTotal = totalDelCarrito();
-    divTotal.innerHTML = `<p>TOTAL: ${miTotal}<p>`;
+    divTotal.innerHTML = 
+    `<p><strong>TOTAL COMPRA: $ ${miTotal}</strong>
+    <p>`;
     sidebar.appendChild(divTotal); 
 };
 
@@ -89,6 +92,22 @@ const restarProducto = (event) => {
       if (element.id === idProducto) {
         element.cantidad--;
         element.precioTotal = element.precioTotal - element.precio;
+        return element;
+      } else {
+        return element;
+      }
+    });
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    inyectarHTMLcarrito();
+  };
+
+  const sumarProducto = (event) => {
+    let idProducto = Number(event.target.getAttribute("data-id"));
+  
+    carrito = carrito.map((element) => {
+      if (element.id === idProducto) {
+        element.cantidad++;
+        element.precioTotal = element.precioTotal + element.precio;
         return element;
       } else {
         return element;
@@ -109,6 +128,9 @@ const restarProducto = (event) => {
     if (event.target.classList.contains("btn-menos")) {
       restarProducto(event);
     }
+    if (event.target.classList.contains("btn-mas")) {
+      sumarProducto(event);
+    }
     if (event.target.classList.contains("btn-borrar")) {
       borrarProducto(event);
     }
@@ -122,7 +144,27 @@ const restarProducto = (event) => {
     return miTotal;
   };
   
-
+  $( document ).ready(function() {
+    //Declaramos la url del API
+    const APIURL = 'https://jsonplaceholder.typicode.com/posts' ; 
+    //Declaramos la información a enviar
+    const infoPost =  { totalDelCarrito }
+    //Agregamos un botón con jQuery
+    $(".carritoSide").append('<button id="btn1">FINALIZAR COMPRA</button>');
+    //Escuchamos el evento click del botón agregado
+    $("#btn1").click(() => { 
+        $.ajax({
+            method: "POST",
+            url:  APIURL,
+            data: infoPost,
+            success: function(respuesta){
+                $(".carritoSide").append(`<div>${respuesta.totalDelCarrito}</div>`);
+                
+            }
+        });
+    });
+  });
+  
 //introducirCards();
 inyectarHTMLcarrito();
 
