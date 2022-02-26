@@ -1,5 +1,4 @@
 $.get("data.json", (data) => {
-  //const introducirCards = () => {
     data.forEach((element) => {
         div1.innerHTML += `<div class="card">
         <img src="${element.img}" style="width:100%">
@@ -145,26 +144,31 @@ const restarProducto = (event) => {
   };
   
   $( document ).ready(function() {
-    //Declaramos la url del API
     const APIURL = 'https://jsonplaceholder.typicode.com/posts' ; 
-    //Declaramos la información a enviar
+   
     const infoPost =  { totalDelCarrito }
-    //Agregamos un botón con jQuery
+    
     $(".carritoSide").append('<button id="btn1">FINALIZAR COMPRA</button>');
-    //Escuchamos el evento click del botón agregado
+    
     $("#btn1").click(() => { 
         $.ajax({
             method: "POST",
             url:  APIURL,
             data: infoPost,
             success: function(respuesta){
-                $(".carritoSide").append(`<div>${respuesta.totalDelCarrito}</div>`);
+                //$(".carritoSide").append(`<div>${respuesta.totalDelCarrito}</div>`);
+                swal({
+                  text: "Compra realizada",
+                 tittle: infoPost,
+                 icon: "success",
+
+                })
                 
             }
         });
     });
   });
   
-//introducirCards();
+
 inyectarHTMLcarrito();
 

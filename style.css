@@ -1,6 +1,7 @@
 body{
     margin: 5px;
     padding: 5px;
+    height: 100vh;
     
 }
 
@@ -58,21 +59,18 @@ body{
 }
 
 .carritoSide {
-    background: rgb(172, 195, 218);
-    position: relative;
+    background-color: rgb(172, 195, 218);
+    position: absolute;
+    width: 50%;
     height: 100vh;
     overflow-x: hidden;
+    z-index: 1;
     opacity: 1;
-    left: 0px;
-    top: 0;
-    z-index: 2;
-    width: 20vw;
     padding: 1px;
     margin: 1px;
     
   }
   .carritoSide:hover{
-      left: 0px;
       cursor: pointer;
   }
 
@@ -124,4 +122,3 @@ body{
 
   }
 
-  transition: left 2s;
