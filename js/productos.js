@@ -59,17 +59,17 @@ const enviarAlCarrito = (datosProductos) => {
 const inyectarHTMLcarrito = () => {
     sidebar.innerHTML = "";
     let divTitulo = document.createElement("div");
-    divTitulo.innerHTML = "<h4>CARRITO DE COMPRAS</h4>";
+    divTitulo.innerHTML = "<h5>CARRITO DE COMPRAS</h5>";
     sidebar.appendChild(divTitulo);
     carrito.forEach((element) => {
         sidebar.innerHTML += ` 
         <div>
-        <h5>${element.nombre}</h5>
-        <img src="${element.imagen}" style="width:30%">
-        <h6>Cantidad: ${element.cantidad}</h6>
+        <h6>${element.nombre}</h6>
+        <img src="${element.imagen}" style="width:20%">
+        <h6 style= "font-size:1em">Cantidad: ${element.cantidad}</h6>
         <button class="btn-menos" data-id=${element.id}> - </button>
         <button class="btn-mas" data-id=${element.id}> + </button>
-        <button class="btn-borrar" data-id=${element.id}>BORRAR </button>
+        <button class="btn-borrar btn-primary" data-id=${element.id}>BORRAR </button>
         <p>subtotal por prenda: $${element.precioTotal}</p>
         </div>`;
     });
@@ -78,8 +78,8 @@ const inyectarHTMLcarrito = () => {
     let divTotal = document.createElement("div");
     let miTotal = totalDelCarrito();
     divTotal.innerHTML = 
-    `<p><strong>TOTAL COMPRA: $ ${miTotal}</strong>
-    <p>`;
+    `<p><strong>TOTAL COMPRA: $ ${miTotal}</strong></p>
+    <button class="btn-danger" id="btn1">FINALIZAR COMPRA</button>`
     sidebar.appendChild(divTotal); 
 };
 
@@ -147,8 +147,6 @@ const restarProducto = (event) => {
     const APIURL = 'https://jsonplaceholder.typicode.com/posts' ; 
    
     const infoPost =  { totalDelCarrito }
-    
-    $(".carritoSide").append('<button id="btn1">FINALIZAR COMPRA</button>');
     
     $("#btn1").click(() => { 
         $.ajax({

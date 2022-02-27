@@ -61,8 +61,8 @@ body{
 .carritoSide {
     background-color: rgb(172, 195, 218);
     position: absolute;
-    width: 50%;
-    height: 100vh;
+    width: 30%;
+    height: 50vh;
     overflow-x: hidden;
     z-index: 1;
     opacity: 1;
