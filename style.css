@@ -2,6 +2,9 @@ body{
     margin: 5px;
     padding: 5px;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     
 }
 
@@ -108,10 +111,7 @@ body{
   .fondoMain{
       background-image: url(./banners/Portada\ Facebook.png);
       width: 100%;
-      height: 50%;
-      padding: 5px;
       margin: 5px;
-      margin-right: 5px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -121,4 +121,16 @@ body{
 
 
   }
+
+  .sizeForm{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+  }
+
+
+
+  
 

@@ -1,4 +1,4 @@
-const nodoPrincipal = document.getElementById("container");
+const nodoPrincipal = document.getElementById("formulario");
 
 const formFields = [
     {
@@ -9,10 +9,7 @@ const formFields = [
         id: "email",
         label: "Email",
     },
-    {
-        id: "password",
-        label: "Password",
-    },
+   
 ]
 
 class Input{
@@ -47,17 +44,21 @@ for(let n=0; n < formFields.length; n++) {
 }
 
 nodoPrincipal.innerHTML = `
-    <h1>Registro</h1>
-    <form id="formulario">
-        ${contenidoDelForm} 
-        <button type=" submit" id="save">Guardar</button> 
+    <h5 style="text-decoration:underline">INFORMACION PERSONAL</h5>
+    <form id="form1">
+        ${contenidoDelForm}<br>
+        <label for="contanos mas sobre tu consulta">Contanos sobre tu consulta</label> <br>
+            <textarea name="motivo" id="motivo" cols="50" rows="10"></textarea> <br>
+        <button type="submit" id="save1">Enviar</button> 
+        <button type="reset" id="cancelar">Cancelar</button>
     </form>
     `
 
 
-    let boton = document.getElementById("save");
-    boton.addEventListener("click", function() {
+    let boton = document.getElementById("save1");
+    boton.addEventListener("click", function() {    
         console.log("clickeando...")
+        
     })
 
     const inputName = document.getElementById("name")
@@ -69,24 +70,23 @@ nodoPrincipal.innerHTML = `
     inputEmail.addEventListener("input", (evt) => {
         console.log(evt.target.value)
     })
-    const inputPassword = document.getElementById("password")
-    inputPassword.addEventListener("input", (evt) => {
-        console.log(evt.target.value)
-    })
-
+   
 
 
 document.getElementById("formulario").addEventListener("submit", (evt) => {
-    evt.preventDefault()
+   evt.preventDefault()
+    swal({
+        text: "Gracias! Responderemos a la brevedad",
+       tittle: form1,
+       icon: "success",
+
+      })
     console.log("Validando el formulario")
-    document.getElementById("formulario").submit()
+    //document.getElementById("formulario").submit()
 
 
-    localStorage.setItem("usuario", JSON.stringify(usuario));
-    let usuario = JSON.parse(localStorage.getItem("usuario")) || [];
+    
+    let contacto = JSON.stringify(localStorage.getItem("contacto")) || [];
+    localStorage.setItem("contacto", JSON.parse(contacto));
 })
 
-
-
-
-   
