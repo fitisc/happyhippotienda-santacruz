@@ -155,11 +155,10 @@ const restarProducto = (event) => {
     return miTotal;
   };
   
-  $( document ).ready(function() {
-    const APIURL = 'https://jsonplaceholder.typicode.com/posts' ; 
-   
-    const infoPost =  { totalDelCarrito }
+  $(document).ready(function() {
+    const APIURL = 'https://jsonplaceholder.typicode.com/posts'; 
     
+    const infoPost =  {totalDelCarrito}
     $("#btn1").click(() => { 
         $.ajax({
             method: "POST",
