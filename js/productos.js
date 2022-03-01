@@ -12,14 +12,21 @@ $.get("data.json", (data) => {
 
 btnBuy.forEach((element) => {
     element.addEventListener("click", (event) => {
-        enviarAlCarrito(event.target.parentElement);    
+        enviarAlCarrito(event.target.parentElement); 
+        swal({
+          text: "Producto agregado",
+          tittle: btnBuy,
+          icon: "success",
+  
+          });   
     });
+   
+});
+    
 });
 
-});
 
-
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let div1 = document.querySelector("#prendasDiv");
 let sidebar = document.querySelector(".carritoSide");
 
@@ -122,6 +129,8 @@ const restarProducto = (event) => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
     inyectarHTMLcarrito();
   };
+
+  
   
   sidebar.addEventListener("click", (event) => {
     if (event.target.classList.contains("btn-menos")) {
@@ -135,6 +144,9 @@ const restarProducto = (event) => {
     }
   });
   
+  
+
+
   const totalDelCarrito = () => {
     let miTotal = carrito.reduce(
       (acumulador, iterador) => acumulador + iterador.precioTotal,
@@ -153,20 +165,17 @@ const restarProducto = (event) => {
             method: "POST",
             url:  APIURL,
             data: infoPost,
-            success: function(respuesta){
-                //$(".carritoSide").append(`<div>${respuesta.totalDelCarrito}</div>`);
-                swal({
-                  text: "Compra realizada",
-                 tittle: infoPost,
-                 icon: "success",
+            success: () => {
+              swal({
+                text: "Compra realizada",
+                tittle: infoPost,
+                icon: "success",
+              });
 
-                })
-                
             }
         });
     });
   });
-  
 
 inyectarHTMLcarrito();
 
